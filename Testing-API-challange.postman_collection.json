@@ -1,0 +1,684 @@
+{
+	"info": {
+		"_postman_id": "02548113-4e1f-4765-8255-fc9915cc6ca1",
+		"name": "Testing-API-challange",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23429604"
+	},
+	"item": [
+		{
+			"name": "auth/register",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "full_name",
+							"value": "Andin Gevin Marpaung",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "{{$randomEmail}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "qwerty12345",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "82274131101",
+							"type": "text"
+						},
+						{
+							"key": "addres",
+							"value": "Tarutung",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"value": "format jpg/png",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Medan",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base-url}}/auth/register",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"andingege38@gmail.com\",\r\n  \"password\": \"qwerty12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/auth/login",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "seller/product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZGluZ2VnZTM1QGdtYWlsLmNvbSIsImlhdCI6MTY2NDg2NzMwMH0.DJnGmNZ67uwEnyAW20VOVhtiZAZX_vdRUEwZnUFlnh4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZGluZ2VnZTM4QGdtYWlsLmNvbSIsImlhdCI6MTY2NTEyODYwM30.juJ0o4bL0y1QVgWRoOf1VzuL2m7ssV0DcIF4puLHj-o",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Telepon",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Telepon",
+							"type": "text"
+						},
+						{
+							"key": "base_price",
+							"value": "1000000",
+							"type": "text"
+						},
+						{
+							"key": "category_ids",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "location",
+							"value": "Bandung",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/C:/Users/ASUS/Downloads/JP.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base-url}}/seller/product",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"seller",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "seller/product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZGluZ2VnZTM4QGdtYWlsLmNvbSIsImlhdCI6MTY2NTEyODYwM30.juJ0o4bL0y1QVgWRoOf1VzuL2m7ssV0DcIF4puLHj-o",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/seller/product",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"seller",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "seller/product/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZGluZ2VnZTM4QGdtYWlsLmNvbSIsImlhdCI6MTY2NTEyODYwM30.juJ0o4bL0y1QVgWRoOf1VzuL2m7ssV0DcIF4puLHj-o",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/seller/product/23611?id=23611",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"seller",
+						"product",
+						"23611"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "23611"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "seller/product/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZGluZ2VnZTM4QGdtYWlsLmNvbSIsImlhdCI6MTY2NTEyODYwM30.juJ0o4bL0y1QVgWRoOf1VzuL2m7ssV0DcIF4puLHj-o",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/seller/product/23610?id=23610",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"seller",
+						"product",
+						"23610"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "23610"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buyer/product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZGluZ2VnZTM4QGdtYWlsLmNvbSIsImlhdCI6MTY2NTEyODYwM30.juJ0o4bL0y1QVgWRoOf1VzuL2m7ssV0DcIF4puLHj-o",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/buyer/product?status=available&category_id=1&search=Telepon&page=1&per_page=4",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"buyer",
+						"product"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "available"
+						},
+						{
+							"key": "category_id",
+							"value": "1"
+						},
+						{
+							"key": "search",
+							"value": "Telepon"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "per_page",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buyer/product/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZGluZ2VnZTM4QGdtYWlsLmNvbSIsImlhdCI6MTY2NTEyODYwM30.juJ0o4bL0y1QVgWRoOf1VzuL2m7ssV0DcIF4puLHj-o",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/buyer/product/23607",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"buyer",
+						"product",
+						"23607"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buyer/order",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZGluZ2VnZTM4QGdtYWlsLmNvbSIsImlhdCI6MTY2NTEyODYwM30.juJ0o4bL0y1QVgWRoOf1VzuL2m7ssV0DcIF4puLHj-o",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"product_id\": 23607,\r\n  \"bid_price\": 1000000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/buyer/order",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"buyer",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buyer/order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZGluZ2VnZTM4QGdtYWlsLmNvbSIsImlhdCI6MTY2NTEyODYwM30.juJ0o4bL0y1QVgWRoOf1VzuL2m7ssV0DcIF4puLHj-o",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/buyer/order",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"buyer",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buyer/order/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZGluZ2VnZTM4QGdtYWlsLmNvbSIsImlhdCI6MTY2NTEyODYwM30.juJ0o4bL0y1QVgWRoOf1VzuL2m7ssV0DcIF4puLHj-o",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{base-url}}/buyer/order/11318?status=available",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"buyer",
+						"order",
+						"11318"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "available"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buyer/order/{id}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuZGluZ2VnZTM4QGdtYWlsLmNvbSIsImlhdCI6MTY2NTEyODYwM30.juJ0o4bL0y1QVgWRoOf1VzuL2m7ssV0DcIF4puLHj-o",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"bid_price\": 1000000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/buyer/order/11318",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"buyer",
+						"order",
+						"11318"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
